@@ -1,0 +1,23 @@
+.login-wrapper {
+  height: 100vh;
+  width: 100%;
+  background-image: url('../../public/bg2.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  /* padding: 5%; */
+  /* Adjust spacing from left edge */
+}
+
+.login-overlay {
+  background: rgba(255, 255, 255, 0.85);
+  /* Optional: white translucent background */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-form {
+  width: 350px;
+}
