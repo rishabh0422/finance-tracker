@@ -6,21 +6,21 @@ import { calculation } from "../utils/utilities";
 export const expenseTracker = createContext();
 
 const AuthContext = ({ children }) => {
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState(null);
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   const [customers, setCustomers] = useState([]);
   const [transactiondata, setTransactiondata] = useState([]);
   const [cardvalue, setCardvalue] = useState({});
   useEffect(() => {
-    if (
-      (location.pathname === "/login" || location.pathname === "/") &&
-      (localStorage.getItem("user") === "admin" ||
-        localStorage.getItem("user") === "customer")
-    ) {
-      navigate("/dashboard");
+    // 
+    if (role===null) {
+      navigate('/login');
     }
-  }, [role, navigate]);
+    else{
+      navigate('/dashboard');
+    }
+  }, [role]);
 
   const login = async (data) => {
     const response = await fetch("http://localhost:4570/customers/login", {
@@ -133,8 +133,9 @@ const AuthContext = ({ children }) => {
       return res;
     }
   };
-  const editTransaction = async (id,data) => {
-    const response = await fetch(`http://localhost:4570/transactions/edit/${id}`,
+  const editTransaction = async (id, data) => {
+    const response = await fetch(
+      `http://localhost:4570/transactions/edit/${id}`,
       {
         method: "PATCH",
         credentials: "include",
